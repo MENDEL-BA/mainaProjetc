@@ -1,9 +1,7 @@
 package com.institution.school.controllers;
 
-import com.institution.school.dtos.RoomDTO;
 import com.institution.school.dtos.TeacherDTO;
 import com.institution.school.models.Room;
-import com.institution.school.models.Teacher;
 import com.institution.school.services.RoomService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,18 +17,18 @@ public class RoomController {
     }
 
     @PostMapping("/addTeacher/{id}")
-    public ResponseEntity<Room> addTeacherToRoom(@RequestBody Teacher teacher, @PathVariable Long roomId) {
-        Room room = this.roomService.addTeacherToRoom(roomId, teacher);
+    public ResponseEntity<String> addTeacherToRoom(@RequestBody TeacherDTO teacherDTO, @PathVariable Long id) {
+        Room room = this.roomService.addTeacherToRoom(id, teacherDTO);
         if (room == null)
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).build();
-        return ResponseEntity.ok(room);
+        return ResponseEntity.ok("Ajout reussi");
     }
 
-    @DeleteMapping("/deleteTeacher/{id}")
-    public ResponseEntity<Room> removeTeacherFromRoom(@RequestBody Teacher teacher, @PathVariable Long roomId) {
-        Room room = this.roomService.removeTeacherFromRoom(roomId, teacher);
+    @DeleteMapping("/deleteTeacher/{roomId}/{teacherId}")
+    public ResponseEntity<String> removeTeacherFromRoom(@PathVariable Long roomId, @PathVariable Long teacherId) {
+        Room room = this.roomService.removeTeacherFromRoom(roomId, teacherId);
         if (room == null)
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).build();
-        return ResponseEntity.ok(room);
+        return ResponseEntity.ok("Suppression reussie");
     }
 }

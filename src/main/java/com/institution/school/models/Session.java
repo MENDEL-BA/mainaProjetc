@@ -8,7 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Collection;
+import java.util.Set;
+
 @Getter
 @Setter
 @Entity
@@ -24,5 +25,5 @@ public class Session {
     private String code;
     @JsonIgnore
     @ManyToMany(mappedBy = "sessions", fetch = FetchType.EAGER)
-    private Collection<Room> rooms;
+    private Set<Room> rooms;
 }

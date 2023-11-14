@@ -1,11 +1,16 @@
 package com.institution.school.dtos;
 
 import com.institution.school.models.Room;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.Collection;
+import java.io.Serializable;
+import java.util.Set;
 
-public class SessionDTO {
+@Getter
+@Setter
+public class SessionDTO implements Serializable {
     private Long id;
     private String code;
-    private Collection<Room> rooms;
+    private Set<Room> rooms;
 }

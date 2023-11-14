@@ -2,13 +2,18 @@ package com.institution.school.dtos;
 
 import com.institution.school.models.Session;
 import com.institution.school.models.Teacher;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
-public class RoomDTO {
+@Getter
+@Setter
+public class RoomDTO implements Serializable {
     private Long id;
     private String name;
-    private Collection<Teacher> teachers;
-    private Collection<Session> sessions = new ArrayList<>();
+    private Set<Teacher> teachers;
+    private Set<Session> sessions = new HashSet<>();
 }
